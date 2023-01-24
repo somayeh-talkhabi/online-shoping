@@ -1,13 +1,24 @@
 import { NavLink } from "react-router-dom";
 import { productsContext } from "./context/product-context";
 import { useContext } from "react";
+import { useEffect } from "react";
 function  Navbar () {
   const productContext = useContext(productsContext);
+  console.log("navbar 1");
+  console.log("navbar 2");
+  const ShowProduct = ()=>{
+    let sum = 0;
+     productContext.cartCount.map(p=>{
+        sum += p.quantity;
+        console.log(p.quantity);
+      })
+      return sum;
+  }
 
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-4 sticky-top ">
-          <NavLink className="navbar-brand mx-3" to={"/home"}>
+          <NavLink className="navbar-brand mx-3 fw-bolder" to={"/home"}>
             online-shopping
           </NavLink>
           <button
@@ -36,7 +47,7 @@ function  Navbar () {
               </NavLink>
             </div>
           </div>
-          <div className="buttons mx-3">
+          {/* <div className="buttons mx-3">
             <NavLink to={"/login"} className="btn btn-dark mx-2 ">
               Login
               <i className="fa fa-sign-in px-1" aria-hidden="true"></i>
@@ -53,12 +64,21 @@ function  Navbar () {
                     className="fa fa-shopping-basket px-1"
                     aria-hidden="true"></i>
                 ) : (
+                  // <span>
+                  //   {productContext.cartCount.reduce(
+                  //     (total, item) => total + item.quantity,
+                  //     0
+                  //   )}
+                  // </span>
+
                   productContext.cartCount.length
+                  // showcartCount()
+                  
                 )}
               </h6>
-              {/* <i className="fa fa-shopping-basket px-1" aria-hidden="true"></i> */}
+              
             </NavLink>
-          </div>
+          </div> */}
         </nav>
       </>
     );

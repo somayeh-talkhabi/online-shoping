@@ -14,7 +14,7 @@ const images = [
     src: "https://png.pngtree.com/template/20211026/ourmid/pngtree-summer-new-clothing-orange-simple-e-commerce-full-screen-banner-image_673023.jpg",
   },
 ];
-const delay = 4500;
+const delay = 3000;
 
 function Home () {
   const [index, setIndex] = React.useState(0);
@@ -53,16 +53,7 @@ function Home () {
         ))}
       </div>
 
-      <div className="slideshowDots">
-        {images.map((_, idx) => (
-          <div
-            key={idx}
-            className={`slideshowDot${index === idx ? " active" : ""}`}
-            onClick={() => {
-              setIndex(idx);
-            }}></div>
-        ))}
-      </div>
+   
     </div>
   );
 }

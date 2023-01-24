@@ -33,19 +33,20 @@ function Product(props) {
   const ShowProduct = () => {
     return (
       <>
-        <div className="col-6">
-          <div className=" image-container d-flex justify-content-center align-items-center w-100">
-            <img
+        <div className="col-lg-6 col-md-6 h-100 product">
+          <div className=" d-flex justify-content-center align-items-center w-100 h-100 image-container">
+            <img width={200} height={200}
               src={productContext.product.image}
               className="product-image h-100"
               alt=""
             />
           </div>
         </div>
-        <div className="col-6 d-flex flex-column align-items-center py-5">
+        <div className="col-lg-6 col-md-6 d-flex flex-column  py-5">
           <h4>{productContext.product.category}</h4>
           <h5 className="py-3">{productContext.product.title}</h5>
           <h6>{productContext.product.description}</h6>
+          <h6 className="fw-bolder"> price : {productContext.product.price} $</h6>
           <div className="d-flex justify-content-center py-5">
             <Link
               to={`/product/${productContext.product.id}`}
@@ -67,7 +68,7 @@ function Product(props) {
   return (
     <>
       <div className="container ">
-        <div className="row h-100">
+        <div className="row ">
           {isLoading ? <LoadingProduct /> : <ShowProduct />}
         </div>
       </div>

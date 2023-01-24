@@ -7,6 +7,7 @@ import Contact from "./components/contact";
 import Login from "./components/login";
 import register from "./components/register";
 import Cart from "./components/cart";
+import Footer from "./components/footer";
 import { LoadingProducts } from "./components/loading";
 import "./components/home/home.css";
 import { Route, Switch } from "react-router-dom";
@@ -16,6 +17,7 @@ import { productsContext } from "./components/context/product-context";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [filtered, setFilter] = useState(products);
   const [cartCount, setCartCount] = useState([]);
   const [product, setProduct] = useState({});
   const [isLoading, setLoading] = useState(true);
@@ -27,6 +29,7 @@ function App() {
       const data = response.data;
       console.log(data);
       setProducts(data);
+      setFilter(data);
       setLoading(false);
     };
     getProducts();
@@ -42,7 +45,7 @@ function App() {
       // setCartCount([...cartCount ,newcartItem]);
       console.log(cartCount);
     } else {
-      newcartItem = { ...product, quantity: 1 };  
+      newcartItem = { ...product, quantity: 1 };
       console.log(newcartItem);
       console.log(cartCount);
       setCartCount([...cartCount, newcartItem]);
@@ -50,13 +53,36 @@ function App() {
       console.log(cartCount);
     }
   };
+
+  const addProduct = (product) => {
+    let selectedProduct = cartCount.find((p) => p.id === product.id);
+    console.log(selectedProduct);
+    selectedProduct.quantity++;
+    setCartCount(cartCount);
+  };
+  const removeProduct = (product) => {
+    let selectedProduct = cartCount.find((p) => p.id === product.id);
+    if (selectedProduct.quantity > 1) {
+      selectedProduct.quantity--;
+      setCartCount(cartCount);
+    } else {
+      const newcartCount = [...cartCount];
+      const newcartItemes = newcartCount.filter((p) => p.id !== product.id);
+      setCartCount(newcartItemes);
+    }
+  };
   return (
     <>
       <productsContext.Provider
         value={{
           products: products,
+          setProducts: setProducts,
+          filtered: filtered,
+          setFilter: setFilter,
           cartCount: cartCount,
           addToCart: addToCart,
+          addProduct: addProduct,
+          removeProduct: removeProduct,
           product: product,
           setProduct: setProduct,
         }}>
@@ -67,6 +93,7 @@ function App() {
             render={() =>
               isLoading ? <LoadingProducts /> : <Products />
             }></Route>
+          
           <Route path={"/product/:id"} component={Product}></Route>
           <Route path={"/about"} component={About}></Route>
           <Route path={"/contact"} component={Contact}></Route>
@@ -76,6 +103,7 @@ function App() {
           <Route path={"/home"} component={Home}></Route>
           <Route path={"/"} exact component={Home}></Route>
         </Switch>
+        <Footer />
       </productsContext.Provider>
       {/* <Navbar />
       <Switch>

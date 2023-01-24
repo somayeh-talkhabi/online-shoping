@@ -9,6 +9,9 @@
 
 
 /******************* Navbar css *************************/
+.navbar{
+    background-color: rgb(239, 234, 234);
+}
 
 
 
@@ -17,12 +20,56 @@
 
 
 /****************** Product css ************************/
-.image-container{
-    padding-top: 100px;
+.product .image-container{
+    margin-top: 90px;
 }
-.product-image{
-    max-width: 400px;
-    max-height: 400px;
+
+
+
+/******************* cart css ***************************/
+.cart-container .cart-itemes{
+    padding: 25px 0;
+    border-bottom: 1px solid lightgray;
+}
+.cart-container .image-container{
+    margin-top: 35px;
+}
+.cart-container .total-price{
+    font-size: 20px;
+    font-weight: 600;
+}
+.cart-container .btn-checkout{
+    display: inline-block;
+    width: 100%;
+    padding: 5px 0;
+    margin: 12px 0;
+    color: black;
+    font-weight: 600;
+    background-color: orange;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 30px;
+
+}
+
+@media screen and (max-width:992px) {
     
+    }
     
+
+    
+
+
+
+/***************** Footer css **************************/
+.footer-container{
+    background-color: rgb(239, 234, 234);
+}
+
+.footer-list{
+    list-style-type: none;;
+}
+.social-link{
+    font-size: 30px;
+    margin-right: 18px;
 }
