@@ -30,17 +30,17 @@ function Cart () {
       {isLoading ? (
         <LoadingCart />
       ) : (
-        <div className="container-fluid">
+        <div className="container-fluid cart-container">
           {productContext.cartCount.length === 0 ? (
-            <div className="row text-center py-5">
+            <div className=" text-center py-5">
               <h1> your basket is empty</h1>
             </div>
           ) : (
-            <div className="row cart-container">
+            <div className="row cart-items-container">
               <div className="col-lg-9 col-md-8 ">
                 {productContext.cartCount.map((p, index) => {
                   return (
-                    <div key={index} className="row cart-itemes">
+                    <div key={index} className="row cart-items">
                       <div className="col-lg-4 col-md-6">
                         <div className="image-container px-5">
                           <img

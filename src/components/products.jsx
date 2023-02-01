@@ -12,7 +12,6 @@ function Products () {
      productContext.setFilter (filteredProduct);
   
     }
-    
    
     return (
       <>
